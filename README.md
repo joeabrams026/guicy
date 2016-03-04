@@ -1,0 +1,1 @@
+#### Quick example showing integration of Guice and Servlet 3.0
