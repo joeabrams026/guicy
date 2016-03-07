@@ -1,11 +1,11 @@
 package sandbox;
 
 import com.google.inject.Inject;
-import com.google.inject.Injector;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import java.io.IOException;
 
 /**
@@ -13,22 +13,10 @@ import java.io.IOException;
  */
 
 @WebServlet(value="/hello", name="hello-servlet", loadOnStartup = 1)
-public class HelloKittyServlet extends HttpServlet {
+public class HelloKittyServlet extends BaseServlet {
 
     @Inject
     HelloService helloService;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-
-        ServletContext context = config.getServletContext();
-        Injector injector = (Injector) context.getAttribute(Injector.class.getName());
-        if (injector == null) {
-            throw new ServletException("Guice Injector not found");
-        }
-        injector.injectMembers(this);
-
-    }
 
     public void service(ServletRequest req, ServletResponse res)
             throws IOException, ServletException

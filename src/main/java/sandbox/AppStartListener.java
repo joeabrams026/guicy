@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebListener;
  * Created by joeabrams on 3/3/16.
  */
 @WebListener
-public class ConfigListener extends GuiceServletContextListener {
+public class AppStartListener extends GuiceServletContextListener {
     @Override
     protected Injector getInjector() {
         return Guice.createInjector(new ServletModule() {

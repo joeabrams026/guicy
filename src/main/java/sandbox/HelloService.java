@@ -1,18 +1,18 @@
 package sandbox;
 
+import com.google.inject.Inject;
+
 /**
  * Created by joeabrams on 3/3/16.
  */
-public class HelloService {
+public class HelloService{
 
-    String name;
-
-    public HelloService() {
-        this.name = "Mimmy Kitty";
-    }
+    protected String name = "Mimmy Kitty";
+    @Inject StatsService statsService;
 
     public String sayHey () {
-        return "Hello " + name;
+        statsService.incr();
+        return "Hello " + name +  " " + statsService.getCallCount();
     }
 
 }
